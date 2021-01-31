@@ -15,12 +15,11 @@ int main() {
         int l, r;
         cin >> l >> r;
         l--;
-        for (int j = l; j < (l + r) / 2; j++) {
-            int k = r - (j - l) - 1;
-            char temp = s[j];
-            s[j] = s[k];
-            s[k] = temp;
+        string t = s;
+        for (int j = 0; j < (r - l); j++) {
+            t[l + j] = s[r - j - 1];
         }
+        s = t;
     }
     cout << s << endl;
 
