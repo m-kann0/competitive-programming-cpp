@@ -35,3 +35,6 @@
 in.txt
 *.in
 *.out
+
+# Visual Studio Code
+.vscode/settings.json
