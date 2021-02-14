@@ -50,5 +50,38 @@
 			"    return 0;",
 			"}"
 		]
-	}
+	},
+	"INF": {
+		"scope": "cpp",
+		"prefix": "INF",
+		"body": [
+			"const int INF = 1'000'000'000;",
+		]
+	},
+	"chmin": {
+		"scope": "cpp",
+		"prefix": "chmin",
+		"body": [
+			"template<class T> inline bool chmin(T& a, T b) {",
+			"    if (a > b) {",
+			"        a = b;",
+			"        return true;",
+			"    }",
+			"    return false;",
+			"}",
+		]
+	},
+	"chmax": {
+		"scope": "cpp",
+		"prefix": "chmax",
+		"body": [
+			"template<class T> inline bool chmax(T& a, T b) {",
+			"    if (a < b) {",
+			"        a = b;",
+			"        return true;",
+			"    }",
+			"    return false;",
+			"}",
+		]
+	},
 }
