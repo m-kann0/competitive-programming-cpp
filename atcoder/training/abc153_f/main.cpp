@@ -4,12 +4,14 @@ using namespace std;
 using namespace atcoder;
 
 using ll = long long;
+using P = pair<ll, ll>;
+
 #define rep(i, n) for (ll i = 0; i < (n); i++)
 
 int main() {
     ll N, D, A;
     cin >> N >> D >> A;
-    vector<pair<ll, ll>> v;
+    vector<P> v;
     rep(i, N) {
         ll X, H;
         cin >> X >> H;
@@ -21,7 +23,7 @@ int main() {
     sort(v.begin(), v.end());
 
     ll ans = 0;
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    priority_queue<P, vector<P>, greater<P>> pq;
     ll i = 0;
     ll damage = 0;
     while (i < N) {
