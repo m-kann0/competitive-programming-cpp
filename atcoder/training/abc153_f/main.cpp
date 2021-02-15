@@ -11,27 +11,23 @@ using P = pair<ll, ll>;
 int main() {
     ll N, D, A;
     cin >> N >> D >> A;
-    vector<P> v;
+    vector<P> v(N);
     rep(i, N) {
-        ll X, H;
-        cin >> X >> H;
-        v.emplace_back(X, H);
+        cin >> v[i].first >> v[i].second;
     }
-    // ll X[N], H[N];
-    // rep(i, N) cin >> X[i] >> H[i];
 
     sort(v.begin(), v.end());
 
     ll ans = 0;
-    priority_queue<P, vector<P>, greater<P>> pq;
+    queue<P> q;
     ll i = 0;
     ll damage = 0;
     while (i < N) {
         ll x = v[i].first;
         ll hp = v[i].second;
-        while (!pq.empty()) {
-            if (pq.top().first <= x) {
-                damage += pq.top().second; pq.pop();
+        while (!q.empty()) {
+            if (q.front().first <= x) {
+                damage += q.front().second; q.pop();
             } else {
                 break;
             }
@@ -41,7 +37,7 @@ int main() {
             ll count = (hp + A - 1) / A;
             ans += count;
             damage += A * count;
-            pq.emplace(x + 2 * D + 1, -A * count);
+            q.emplace(x + 2 * D + 1, -A * count);
         }
         i++;
     }
