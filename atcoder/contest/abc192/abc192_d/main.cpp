@@ -7,13 +7,14 @@ using ll = long long;
 using P = pair<ll, ll>;
 
 #define rep(i, n) for (ll i = 0; i < ((ll) n); i++)
+#define sizeof(x) ((ll) x.size())
 
 int main() {
     string X;
     ll M;
     cin >> X >> M;
 
-    if (X.size() == 1) {
+    if (sizeof(X) == 1) {
         if (X[0] - '0' <= M) {
             cout << 1 << endl;
         } else {
@@ -23,14 +24,14 @@ int main() {
     }
 
     ll d = 0;
-    rep(i, X.size()) {
+    rep(i, sizeof(X)) {
         d = max((int) d, X[i] - '0');
     }
 
     auto is_ok = [&](ll n) {
         ll value = 0;
-        rep(i, X.size()) {
-            if (value > (M + n - 1) / n) {
+        rep(i, sizeof(X)) {
+            if (value > M / n) {
                 return false;
             }
             value *= n;
@@ -42,16 +43,19 @@ int main() {
         return true;
     };
 
-    ll ok = d;
-    ll ng = M + 1;
-    while (abs(ok - ng) > 1) {
-        ll mid = (ok + ng) / 2;
-        if (is_ok(mid)) {
-            ok = mid;
-        } else {
-            ng = mid;
+    auto binary_search = [](auto ok, auto ng, auto is_ok) {
+        while (abs(ok - ng) > 1) {
+            ll mid = (ok + ng) / 2;
+            if (is_ok(mid)) {
+                ok = mid;
+            } else {
+                ng = mid;
+            }
         }
-    }
+        return ok;
+    };
+
+    ll ok = binary_search(d, M + 1, is_ok);
 
     cout << ok - d << endl;
 
