@@ -1,15 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
-
-using ll = long long;
-using P = pair<ll, ll>;
-
-#define rep(i, n) for (ll i = 0; i < ((ll) n); i++)
-#define sizeof(x) ((ll) x.size())
-
-const ll INF = 1'000'000'000'000'000'000;
-
-#include <bits/stdc++.h>
 struct warshall_floyd {
 public:
     warshall_floyd(int n) : _n(n) {
@@ -61,38 +50,3 @@ private:
     int _n;
     std::vector<std::vector<long long>> d;
 };
-
-int main() {
-    ll V, E;
-    cin >> V >> E;
-
-    warshall_floyd wf(V);
-    rep(i, E) {
-        ll s, t, d;
-        cin >> s >> t >> d;
-        wf.add_edge(s, t, d);
-    }
-
-    wf.execute();
-
-    if (wf.has_negative_cycle()) {
-        cout << "NEGATIVE CYCLE" << endl;
-        return 0;
-    }
-
-    rep(i, V) {
-        rep(j, V) {
-            if (j > 0) {
-                cout << " ";
-            }
-            if (wf.reachable(i, j)) {
-                cout << wf.shortest_path(i, j);
-            } else {
-                cout << "INF";
-            }
-        }
-        cout << endl;
-    }
-
-    return 0;
-}
