@@ -12,7 +12,7 @@ public:
         d[from][to] = std::min(d[from][to], cost);
     }
 
-    void execute() {
+    void solve() {
         for (int k = 0; k < _n; k++) {
             for (int i = 0; i < _n; i++) {
                 for (int j = 0; j < _n; j++) {
